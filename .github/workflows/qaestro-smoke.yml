@@ -1,0 +1,17 @@
+name: Qaestro Smoke CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  qaestro-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Decide result from marker
+        run: |
+          if grep -R "QAESTRO_FORCE_FAIL" -n .; then
+            echo "qaestro smoke failure marker found"
+            exit 1
+          fi
+          echo "qaestro smoke passed"
