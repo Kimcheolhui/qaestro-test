@@ -8,6 +8,7 @@ jobs:
   qaestro-smoke:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Decide result from marker
         run: |
           if grep -R "QAESTRO_FORCE_FAIL" -n .; then
